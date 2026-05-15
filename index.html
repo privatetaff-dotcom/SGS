@@ -312,22 +312,6 @@
       padding: 1rem;
     }
 
-    /* ── Safety card ── */
-    .card.safety {
-      background: #1a0505;
-      border-color: #4a1010;
-    }
-
-    .card.safety .card-header {
-      background: #220808;
-      border-bottom-color: #4a1010;
-    }
-
-    .card.safety .field-value {
-      background: #120303;
-      border-color: #4a1010;
-    }
-
     /* ── Footer ── */
     footer {
       background: #000;
@@ -366,94 +350,51 @@
 
     .stat-trigger:hover .stat-value { color: #ff3333; }
 
-    /* ── Dropdown tâches ── */
-    .stat-dropdown-wrapper {
-      position: relative;
-    }
-
-    .tasks-dropdown {
-      background: #1a1a1a;
-      border: 1px solid #333;
-      border-radius: 6px;
-      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+    /* ── Tasks page ── */
+    .tasks-page {
       display: none;
-      left: 0;
-      min-width: 120px;
-      overflow: hidden;
-      position: absolute;
-      top: calc(100% + 8px);
-      z-index: 100;
+      flex: 1;
+      padding: 2rem;
     }
 
-    .tasks-dropdown.open { display: block; }
+    .tasks-page.open { display: block; }
 
-    .tasks-dropdown button {
-      background: none;
-      border: none;
-      color: #bbb;
-      cursor: pointer;
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 600;
-      letter-spacing: 0.05em;
-      padding: 0.6rem 1rem;
-      text-align: left;
-      transition: background 0.12s, color 0.12s;
-      width: 100%;
-    }
-
-    .tasks-dropdown button:hover { background: #2a2a2a; color: #fff; }
-    .tasks-dropdown button.active { background: #cc0000; color: #fff; }
-
-    /* ── Panel tâches ── */
-    .tasks-panel {
-      display: none;
-      background: #191919;
-      border-bottom: 1px solid #2a2a2a;
-      padding: 1.25rem 2rem;
-    }
-
-    .tasks-panel.open { display: block; }
-
-    .tasks-panel-header {
-      align-items: center;
-      display: flex;
-      justify-content: space-between;
-      margin-bottom: 1rem;
-    }
-
-    .tasks-panel-title {
+    .tasks-page-title {
       color: #fff;
-      font-size: 0.85rem;
+      font-size: 1.25rem;
       font-weight: 700;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
-    .tasks-panel-title span {
+    .tasks-post-section {
+      background: #1e1e1e;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      margin-bottom: 1rem;
+      overflow: hidden;
+    }
+
+    .tasks-post-header {
+      background: #222;
+      border-bottom: 1px solid #2a2a2a;
+      padding: 0.65rem 1rem;
+    }
+
+    .tasks-post-header span {
       color: #cc0000;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
-
-    .tasks-panel-close {
-      background: none;
-      border: 1px solid #333;
-      border-radius: 4px;
-      color: #666;
-      cursor: pointer;
-      font-size: 0.75rem;
-      padding: 0.2rem 0.5rem;
-      transition: color 0.15s, border-color 0.15s;
-    }
-
-    .tasks-panel-close:hover { color: #fff; border-color: #666; }
-
-    .tasks-panel-content { display: none; }
-    .tasks-panel-content.active { display: block; }
 
     .tasks-text {
       color: #ccc;
+      display: block;
       font-size: 0.85rem;
       line-height: 1.6;
+      padding: 0.85rem 1rem;
     }
 
     .tasks-text.placeholder {
@@ -481,16 +422,11 @@
           <span class="stat-label">Règles de sécurité</span>
         </button>
       </div>
-      <div class="stat stat-dropdown-wrapper">
+      <div class="stat">
         <button class="stat-trigger" id="tasks-trigger">
           <span class="stat-value">›</span>
           <span class="stat-label">Tâches à effectuer</span>
         </button>
-        <div class="tasks-dropdown" id="tasks-dropdown">
-          <button data-post="p1">P1</button>
-          <button data-post="p2">P2</button>
-          <button data-post="p3">P3</button>
-        </div>
       </div>
     </div>
   </section>
@@ -518,18 +454,22 @@
     </div>
   </section>
 
-  <section class="tasks-panel" id="tasks-panel">
-    <div class="tasks-panel-header">
-      <span class="tasks-panel-title">Tâches — <span id="tasks-panel-post"></span></span>
-      <button class="tasks-panel-close" id="tasks-panel-close">Fermer</button>
+  <!-- Page Tâches à effectuer -->
+  <section class="tasks-page" id="tasks-page">
+    <div class="safety-page-header">
+      <button class="btn-back" id="tasks-back">← Retour</button>
+      <h2 class="tasks-page-title">Tâches à effectuer</h2>
     </div>
-    <div class="tasks-panel-content" id="tasks-content-p1">
+    <div class="tasks-post-section">
+      <div class="tasks-post-header"><span>P1</span></div>
       <p class="tasks-text">Faire la pastille et la roto, ramener à AD1 la pastille, faire les prélèvements CFO KSP SFR.</p>
     </div>
-    <div class="tasks-panel-content" id="tasks-content-p2">
+    <div class="tasks-post-section">
+      <div class="tasks-post-header"><span>P2</span></div>
       <p class="tasks-text placeholder">À renseigner</p>
     </div>
-    <div class="tasks-panel-content" id="tasks-content-p3">
+    <div class="tasks-post-section">
+      <div class="tasks-post-header"><span>P3</span></div>
       <p class="tasks-text placeholder">À renseigner</p>
     </div>
   </section>
@@ -654,23 +594,6 @@
         </div>
       </div>
 
-      <!-- Règle de sécurité -->
-      <div class="card safety" id="securite">
-        <div class="card-header">
-          <span class="card-title">Règle de sécurité</span>
-          <span class="status-dot red"></span>
-        </div>
-        <div class="card-body">
-          <div class="field">
-            <label>Consigne</label>
-            <div class="field-value"></div>
-          </div>
-          <div class="field">
-            <label>Équipement requis</label>
-            <div class="field-value"></div>
-          </div>
-        </div>
-      </div>
 
     </div>
   </main>
@@ -707,57 +630,33 @@
       return 'Traitement à renseigner';
     }
 
-    // Panel tâches hero
-    const trigger = document.getElementById('tasks-trigger');
-    const dropdown = document.getElementById('tasks-dropdown');
-    const panel = document.getElementById('tasks-panel');
-    const panelPost = document.getElementById('tasks-panel-post');
-
-    trigger.addEventListener('click', e => {
-      e.stopPropagation();
-      dropdown.classList.toggle('open');
-    });
-
-    document.addEventListener('click', () => dropdown.classList.remove('open'));
-
-    dropdown.querySelectorAll('button[data-post]').forEach(btn => {
-      btn.addEventListener('click', e => {
-        e.stopPropagation();
-        const post = btn.dataset.post;
-        dropdown.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-        btn.classList.add('active');
-        dropdown.classList.remove('open');
-        document.querySelectorAll('.tasks-panel-content').forEach(c => c.classList.remove('active'));
-        document.getElementById('tasks-content-' + post).classList.add('active');
-        panelPost.textContent = post.toUpperCase();
-        panel.classList.add('open');
-      });
-    });
-
-    document.getElementById('tasks-panel-close').addEventListener('click', () => {
-      panel.classList.remove('open');
-      dropdown.querySelectorAll('button').forEach(b => b.classList.remove('active'));
-    });
-
-    // Page Règles de sécurité
-    const safetyPage = document.getElementById('safety-page');
+    // Navigation entre pages
     const mainEl = document.querySelector('main');
-    const tasksPanel = document.getElementById('tasks-panel');
+    const safetyPage = document.getElementById('safety-page');
+    const tasksPage = document.getElementById('tasks-page');
+
+    function showMain() {
+      mainEl.style.display = '';
+      safetyPage.classList.remove('open');
+      tasksPage.classList.remove('open');
+    }
 
     function openSafety() {
       safetyPage.classList.add('open');
+      tasksPage.classList.remove('open');
       mainEl.style.display = 'none';
-      tasksPanel.style.display = 'none';
     }
 
-    function closeSafety() {
+    function openTasks() {
+      tasksPage.classList.add('open');
       safetyPage.classList.remove('open');
-      mainEl.style.display = '';
-      tasksPanel.style.display = '';
+      mainEl.style.display = 'none';
     }
 
     document.getElementById('securite-trigger').addEventListener('click', openSafety);
-    document.getElementById('securite-back').addEventListener('click', closeSafety);
+    document.getElementById('securite-back').addEventListener('click', showMain);
+    document.getElementById('tasks-trigger').addEventListener('click', openTasks);
+    document.getElementById('tasks-back').addEventListener('click', showMain);
 
     document.querySelectorAll('.minerai-btn').forEach(btn => {
       btn.addEventListener('click', () => {
