@@ -212,12 +212,36 @@
       color: #ccc;
       display: flex;
       flex-direction: column;
-      gap: 0.35rem;
+      gap: 0.5rem;
     }
 
     .treatment-detail ol li {
       font-size: 0.8rem;
-      line-height: 1.4;
+      line-height: 1.5;
+    }
+
+    .treatment-detail ul {
+      padding-left: 1rem;
+      margin-top: 0.35rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.3rem;
+      list-style: disc;
+    }
+
+    .treatment-detail ul li {
+      font-size: 0.78rem;
+      color: #aaa;
+    }
+
+    .heure-badge {
+      background: #cc0000;
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.75rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 3px;
+      letter-spacing: 0.04em;
     }
 
     /* ── Safety card ── */
@@ -422,11 +446,19 @@
     function buildTreatmentHTML(minerai, heure) {
       if (minerai === 'COKERIE') {
         return `
-          <div class="prelevement">Prélèvement à ${heure}</div>
           <ol>
-            <li>Diviser la cokerie dans le diviseur.</li>
-            <li>Faire un sachet brut avec l'inscription : <strong>Cokerie brut + date + équipe</strong>.</li>
-            <li>Depuis ce même bac : réaliser le plateau granulo et le plateau humidité.</li>
+            <li>
+              <strong>Récupérer la cokerie de l'équipe précédente</strong> (en étuve depuis 4h) :
+              <ul>
+                <li><em>Plateau granulo</em> : tamiser aux mailles 200µm, 500µm, 1mm, 2mm, 3mm, 5mm, 10mm, 20mm — peser chaque fraction et inscrire sur la feuille.</li>
+                <li><em>Plateau humidité</em> : peser, inscrire sur la feuille, puis mettre dans le sachet <strong>Charbon cokerie + date</strong>.</li>
+                <li>Renseigner les chiffres sur le rapport.</li>
+              </ul>
+            </li>
+            <li><strong>Prélever la cokerie de l'équipe en cours</strong> à <span class="heure-badge">${heure}</span>.</li>
+            <li>Diviser dans le diviseur.</li>
+            <li>Faire le sachet brut avec inscription : <strong>Cokerie brut + date + équipe</strong>.</li>
+            <li>Mettre les plateaux granulo et humidité à l'étuve.</li>
           </ol>`;
       }
       return 'Traitement à renseigner';
