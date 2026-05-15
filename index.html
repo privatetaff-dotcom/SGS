@@ -148,6 +148,54 @@
       color: #444;
     }
 
+    /* ── Minerai list ── */
+    .minerai-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .minerai-btn {
+      background: #2a2a2a;
+      border: 1px solid #383838;
+      border-radius: 4px;
+      color: #bbb;
+      cursor: pointer;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 0.3rem 0.6rem;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .minerai-btn:hover {
+      background: #333;
+      color: #fff;
+      border-color: #555;
+    }
+
+    .minerai-btn.active {
+      background: #cc0000;
+      border-color: #cc0000;
+      color: #fff;
+    }
+
+    /* ── Treatment detail ── */
+    .treatment-detail {
+      display: none;
+      background: #161616;
+      border: 1px solid #2a2a2a;
+      border-radius: 4px;
+      padding: 0.6rem 0.75rem;
+      font-size: 0.8rem;
+      color: #888;
+      font-style: italic;
+    }
+
+    .treatment-detail.visible {
+      display: block;
+    }
+
     /* ── Safety card ── */
     .card.safety {
       background: #1a0505;
@@ -215,11 +263,19 @@
         <div class="card-body">
           <div class="field">
             <label>Type de minerai</label>
-            <div class="field-value"></div>
+            <div class="minerai-list" data-card="p1">
+              <button class="minerai-btn" data-card="p1" data-minerai="KSP">KSP</button>
+              <button class="minerai-btn" data-card="p1" data-minerai="KSP5">KSP5</button>
+              <button class="minerai-btn" data-card="p1" data-minerai="CFO">CFO</button>
+              <button class="minerai-btn" data-card="p1" data-minerai="SFR">SFR</button>
+              <button class="minerai-btn" data-card="p1" data-minerai="CAO">CAO</button>
+              <button class="minerai-btn" data-card="p1" data-minerai="ABO">ABO</button>
+              <button class="minerai-btn" data-card="p1" data-minerai="COKERIE">COKERIE</button>
+            </div>
           </div>
           <div class="field">
             <label>Traitement</label>
-            <div class="field-value"></div>
+            <div class="treatment-detail" id="treatment-p1">Traitement à renseigner</div>
           </div>
         </div>
       </div>
@@ -233,11 +289,19 @@
         <div class="card-body">
           <div class="field">
             <label>Type de minerai</label>
-            <div class="field-value"></div>
+            <div class="minerai-list" data-card="p2">
+              <button class="minerai-btn" data-card="p2" data-minerai="KSP">KSP</button>
+              <button class="minerai-btn" data-card="p2" data-minerai="KSP5">KSP5</button>
+              <button class="minerai-btn" data-card="p2" data-minerai="CFO">CFO</button>
+              <button class="minerai-btn" data-card="p2" data-minerai="SFR">SFR</button>
+              <button class="minerai-btn" data-card="p2" data-minerai="CAO">CAO</button>
+              <button class="minerai-btn" data-card="p2" data-minerai="ABO">ABO</button>
+              <button class="minerai-btn" data-card="p2" data-minerai="COKERIE">COKERIE</button>
+            </div>
           </div>
           <div class="field">
             <label>Traitement</label>
-            <div class="field-value"></div>
+            <div class="treatment-detail" id="treatment-p2">Traitement à renseigner</div>
           </div>
         </div>
       </div>
@@ -251,11 +315,19 @@
         <div class="card-body">
           <div class="field">
             <label>Type de minerai</label>
-            <div class="field-value"></div>
+            <div class="minerai-list" data-card="p3">
+              <button class="minerai-btn" data-card="p3" data-minerai="KSP">KSP</button>
+              <button class="minerai-btn" data-card="p3" data-minerai="KSP5">KSP5</button>
+              <button class="minerai-btn" data-card="p3" data-minerai="CFO">CFO</button>
+              <button class="minerai-btn" data-card="p3" data-minerai="SFR">SFR</button>
+              <button class="minerai-btn" data-card="p3" data-minerai="CAO">CAO</button>
+              <button class="minerai-btn" data-card="p3" data-minerai="ABO">ABO</button>
+              <button class="minerai-btn" data-card="p3" data-minerai="COKERIE">COKERIE</button>
+            </div>
           </div>
           <div class="field">
             <label>Traitement</label>
-            <div class="field-value"></div>
+            <div class="treatment-detail" id="treatment-p3">Traitement à renseigner</div>
           </div>
         </div>
       </div>
@@ -321,6 +393,26 @@
     <span>SGS Minerai · Site industriel</span>
     <span>v1.0</span>
   </footer>
+
+  <script>
+    document.querySelectorAll('.minerai-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const card = btn.dataset.card;
+        const detail = document.getElementById('treatment-' + card);
+        const isActive = btn.classList.contains('active');
+
+        // Deselect all buttons in this card
+        document.querySelectorAll(`.minerai-btn[data-card="${card}"]`).forEach(b => b.classList.remove('active'));
+
+        if (isActive) {
+          detail.classList.remove('visible');
+        } else {
+          btn.classList.add('active');
+          detail.classList.add('visible');
+        }
+      });
+    });
+  </script>
 
 </body>
 </html>
