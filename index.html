@@ -434,50 +434,31 @@
 
     .tasks-panel-content {
       display: none;
-      flex-direction: column;
-      gap: 0.35rem;
     }
 
-    .tasks-panel-content.active { display: flex; }
+    .tasks-panel-content.active { display: block; }
 
-    .panel-task-item {
+    .tasks-panel-content ul {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .tasks-panel-content ul li {
+      background: #222;
       border: 1px solid #2a2a2a;
       border-radius: 4px;
-      overflow: hidden;
+      color: #ccc;
+      font-size: 0.82rem;
+      padding: 0.5rem 0.75rem;
     }
 
-    .panel-task-btn {
-      align-items: center;
-      background: #222;
-      border: none;
-      color: #bbb;
-      cursor: pointer;
-      display: flex;
-      font-size: 0.78rem;
-      font-weight: 500;
-      justify-content: space-between;
-      padding: 0.45rem 0.7rem;
-      text-align: left;
-      transition: background 0.15s, color 0.15s;
-      width: 100%;
-    }
-
-    .panel-task-btn::after { content: '›'; font-size: 1rem; transition: transform 0.2s; }
-    .panel-task-btn:hover { background: #2a2a2a; color: #fff; }
-    .panel-task-btn.open { background: #2a2a2a; color: #fff; }
-    .panel-task-btn.open::after { transform: rotate(90deg); }
-
-    .panel-task-detail {
-      background: #161616;
-      border-top: 1px solid #2a2a2a;
-      color: #666;
-      display: none;
-      font-size: 0.78rem;
+    .tasks-panel-content .placeholder {
+      color: #444;
       font-style: italic;
-      padding: 0.5rem 0.7rem;
+      font-size: 0.8rem;
     }
-
-    .panel-task-detail.visible { display: block; }
   </style>
 </head>
 <body>
@@ -519,19 +500,20 @@
       <button class="tasks-panel-close" id="tasks-panel-close">Fermer</button>
     </div>
     <div class="tasks-panel-content" id="tasks-content-p1">
-      <div class="panel-task-item"><button class="panel-task-btn">Tâche 1</button><div class="panel-task-detail">Détail à renseigner</div></div>
-      <div class="panel-task-item"><button class="panel-task-btn">Tâche 2</button><div class="panel-task-detail">Détail à renseigner</div></div>
-      <div class="panel-task-item"><button class="panel-task-btn">Tâche 3</button><div class="panel-task-detail">Détail à renseigner</div></div>
+      <ul>
+        <li>Faire prélèvement roto</li>
+        <li>Aller voir si ya un bateau à quai</li>
+      </ul>
     </div>
     <div class="tasks-panel-content" id="tasks-content-p2">
-      <div class="panel-task-item"><button class="panel-task-btn">Tâche 1</button><div class="panel-task-detail">Détail à renseigner</div></div>
-      <div class="panel-task-item"><button class="panel-task-btn">Tâche 2</button><div class="panel-task-detail">Détail à renseigner</div></div>
-      <div class="panel-task-item"><button class="panel-task-btn">Tâche 3</button><div class="panel-task-detail">Détail à renseigner</div></div>
+      <ul>
+        <li class="placeholder">À renseigner</li>
+      </ul>
     </div>
     <div class="tasks-panel-content" id="tasks-content-p3">
-      <div class="panel-task-item"><button class="panel-task-btn">Tâche 1</button><div class="panel-task-detail">Détail à renseigner</div></div>
-      <div class="panel-task-item"><button class="panel-task-btn">Tâche 2</button><div class="panel-task-detail">Détail à renseigner</div></div>
-      <div class="panel-task-item"><button class="panel-task-btn">Tâche 3</button><div class="panel-task-detail">Détail à renseigner</div></div>
+      <ul>
+        <li class="placeholder">À renseigner</li>
+      </ul>
     </div>
   </section>
 
@@ -801,15 +783,6 @@
       dropdown.querySelectorAll('button').forEach(b => b.classList.remove('active'));
     });
 
-    // Tâches dans le panel hero
-    document.querySelectorAll('.panel-task-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const detail = btn.nextElementSibling;
-        const isOpen = btn.classList.contains('open');
-        btn.classList.toggle('open', !isOpen);
-        detail.classList.toggle('visible', !isOpen);
-      });
-    });
 
     document.querySelectorAll('.minerai-btn').forEach(btn => {
       btn.addEventListener('click', () => {
