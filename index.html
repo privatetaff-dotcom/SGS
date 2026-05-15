@@ -443,8 +443,11 @@
   </footer>
 
   <script>
-    function buildTreatmentHTML(minerai, heure) {
+    function buildTreatmentHTML(minerai, heure, card) {
       if (minerai === 'COKERIE') {
+        const retourSachet = card === 'p1'
+          ? '<li>Ramener le sachet charbon cokerie à la cokerie <strong>avant 8h</strong>.</li>'
+          : '';
         return `
           <ol>
             <li>
@@ -452,6 +455,7 @@
               <ul>
                 <li><em>Plateau granulo</em> : tamiser aux mailles 200µm, 500µm, 1mm, 2mm, 3mm, 5mm, 10mm, 20mm — peser chaque fraction et inscrire sur la feuille.</li>
                 <li><em>Plateau humidité</em> : peser, inscrire sur la feuille, puis mettre dans le sachet <strong>Charbon cokerie + date</strong>.</li>
+                ${retourSachet}
                 <li>Renseigner les chiffres sur le rapport.</li>
               </ul>
             </li>
@@ -477,7 +481,7 @@
           detail.innerHTML = '';
         } else {
           btn.classList.add('active');
-          detail.innerHTML = buildTreatmentHTML(btn.dataset.minerai, btn.dataset.heure);
+          detail.innerHTML = buildTreatmentHTML(btn.dataset.minerai, btn.dataset.heure, card);
           detail.classList.add('visible');
         }
       });
