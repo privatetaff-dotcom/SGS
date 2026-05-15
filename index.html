@@ -244,6 +244,59 @@
       letter-spacing: 0.04em;
     }
 
+    /* ── Tasks ── */
+    .task-list {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .task-item {
+      border: 1px solid #2a2a2a;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .task-btn {
+      width: 100%;
+      background: #222;
+      border: none;
+      color: #bbb;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.78rem;
+      font-weight: 500;
+      padding: 0.45rem 0.7rem;
+      text-align: left;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .task-btn::after {
+      content: '›';
+      font-size: 1rem;
+      transition: transform 0.2s;
+      flex-shrink: 0;
+    }
+
+    .task-btn:hover { background: #2a2a2a; color: #fff; }
+
+    .task-btn.open { color: #fff; background: #2a2a2a; }
+    .task-btn.open::after { transform: rotate(90deg); }
+
+    .task-detail {
+      display: none;
+      background: #161616;
+      border-top: 1px solid #2a2a2a;
+      color: #666;
+      font-size: 0.78rem;
+      font-style: italic;
+      padding: 0.5rem 0.7rem;
+    }
+
+    .task-detail.visible { display: block; }
+
     /* ── Safety card ── */
     .card.safety {
       background: #1a0505;
@@ -319,11 +372,29 @@
               <button class="minerai-btn" data-card="p1" data-minerai="CAO">CAO</button>
               <button class="minerai-btn" data-card="p1" data-minerai="ABO">ABO</button>
               <button class="minerai-btn" data-card="p1" data-minerai="COKERIE" data-heure="10h">COKERIE</button>
+              <button class="minerai-btn" data-card="p1" data-minerai="HOF">HOF</button>
             </div>
           </div>
           <div class="field">
             <label>Traitement</label>
             <div class="treatment-detail" id="treatment-p1">Traitement à renseigner</div>
+          </div>
+          <div class="field">
+            <label>Tâches à effectuer</label>
+            <div class="task-list">
+              <div class="task-item">
+                <button class="task-btn">Tâche 1</button>
+                <div class="task-detail">Détail à renseigner</div>
+              </div>
+              <div class="task-item">
+                <button class="task-btn">Tâche 2</button>
+                <div class="task-detail">Détail à renseigner</div>
+              </div>
+              <div class="task-item">
+                <button class="task-btn">Tâche 3</button>
+                <div class="task-detail">Détail à renseigner</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -345,11 +416,29 @@
               <button class="minerai-btn" data-card="p2" data-minerai="CAO">CAO</button>
               <button class="minerai-btn" data-card="p2" data-minerai="ABO">ABO</button>
               <button class="minerai-btn" data-card="p2" data-minerai="COKERIE" data-heure="18h">COKERIE</button>
+              <button class="minerai-btn" data-card="p2" data-minerai="HOF">HOF</button>
             </div>
           </div>
           <div class="field">
             <label>Traitement</label>
             <div class="treatment-detail" id="treatment-p2">Traitement à renseigner</div>
+          </div>
+          <div class="field">
+            <label>Tâches à effectuer</label>
+            <div class="task-list">
+              <div class="task-item">
+                <button class="task-btn">Tâche 1</button>
+                <div class="task-detail">Détail à renseigner</div>
+              </div>
+              <div class="task-item">
+                <button class="task-btn">Tâche 2</button>
+                <div class="task-detail">Détail à renseigner</div>
+              </div>
+              <div class="task-item">
+                <button class="task-btn">Tâche 3</button>
+                <div class="task-detail">Détail à renseigner</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -371,11 +460,29 @@
               <button class="minerai-btn" data-card="p3" data-minerai="CAO">CAO</button>
               <button class="minerai-btn" data-card="p3" data-minerai="ABO">ABO</button>
               <button class="minerai-btn" data-card="p3" data-minerai="COKERIE" data-heure="2h">COKERIE</button>
+              <button class="minerai-btn" data-card="p3" data-minerai="HOF">HOF</button>
             </div>
           </div>
           <div class="field">
             <label>Traitement</label>
             <div class="treatment-detail" id="treatment-p3">Traitement à renseigner</div>
+          </div>
+          <div class="field">
+            <label>Tâches à effectuer</label>
+            <div class="task-list">
+              <div class="task-item">
+                <button class="task-btn">Tâche 1</button>
+                <div class="task-detail">Détail à renseigner</div>
+              </div>
+              <div class="task-item">
+                <button class="task-btn">Tâche 2</button>
+                <div class="task-detail">Détail à renseigner</div>
+              </div>
+              <div class="task-item">
+                <button class="task-btn">Tâche 3</button>
+                <div class="task-detail">Détail à renseigner</div>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -468,6 +575,15 @@
       }
       return 'Traitement à renseigner';
     }
+
+    document.querySelectorAll('.task-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const detail = btn.nextElementSibling;
+        const isOpen = btn.classList.contains('open');
+        btn.classList.toggle('open', !isOpen);
+        detail.classList.toggle('visible', !isOpen);
+      });
+    });
 
     document.querySelectorAll('.minerai-btn').forEach(btn => {
       btn.addEventListener('click', () => {
