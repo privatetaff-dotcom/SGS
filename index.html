@@ -17,7 +17,7 @@
     }
 
     /* ── Navbar ── */
-    nav {
+    nav.topbar {
       background: #000;
       padding: 0 2rem;
       height: 56px;
@@ -38,41 +38,48 @@
     .hero {
       background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
       border-bottom: 1px solid #2a2a2a;
-      padding: 2.5rem 2rem;
+      padding: 1.5rem 2rem;
     }
 
     .hero h1 {
       font-size: 1.75rem;
       font-weight: 700;
       color: #fff;
-      margin-bottom: 1.75rem;
+      margin-bottom: 1.25rem;
       letter-spacing: 0.02em;
     }
 
-    .stats {
+    /* ── Hero nav ── */
+    .hero-nav {
       display: flex;
-      gap: 2rem;
       flex-wrap: wrap;
+      gap: 0.5rem;
     }
 
-    .stat {
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .stat-value {
-      font-size: 2rem;
-      font-weight: 700;
-      color: #cc0000;
-      line-height: 1;
-    }
-
-    .stat-label {
-      font-size: 0.75rem;
+    .hero-nav button {
+      background: #222;
+      border: 1px solid #333;
+      border-radius: 6px;
+      color: #aaa;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.06em;
+      padding: 0.5rem 1rem;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #888;
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+    }
+
+    .hero-nav button:hover {
+      background: #2a2a2a;
+      border-color: #555;
+      color: #fff;
+    }
+
+    .hero-nav button.active {
+      background: #cc0000;
+      border-color: #cc0000;
+      color: #fff;
     }
 
     /* ── Grid ── */
@@ -119,8 +126,6 @@
       background: #3cba5f;
       flex-shrink: 0;
     }
-
-    .status-dot.red { background: #cc0000; }
 
     .card-body {
       padding: 1rem;
@@ -192,19 +197,7 @@
       font-style: italic;
     }
 
-    .treatment-detail.visible {
-      display: block;
-    }
-
-    .treatment-detail .prelevement {
-      font-style: normal;
-      font-weight: 600;
-      color: #cc0000;
-      font-size: 0.75rem;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 0.5rem;
-    }
+    .treatment-detail.visible { display: block; }
 
     .treatment-detail ol {
       padding-left: 1.1rem;
@@ -215,10 +208,7 @@
       gap: 0.5rem;
     }
 
-    .treatment-detail ol li {
-      font-size: 0.8rem;
-      line-height: 1.5;
-    }
+    .treatment-detail ol li { font-size: 0.8rem; line-height: 1.5; }
 
     .treatment-detail ul {
       padding-left: 1rem;
@@ -229,10 +219,7 @@
       list-style: disc;
     }
 
-    .treatment-detail ul li {
-      font-size: 0.78rem;
-      color: #aaa;
-    }
+    .treatment-detail ul li { font-size: 0.78rem; color: #aaa; }
 
     .heure-badge {
       background: #cc0000;
@@ -244,16 +231,16 @@
       letter-spacing: 0.04em;
     }
 
-    /* ── Safety page ── */
-    .safety-page {
+    /* ── Pages dédiées ── */
+    .page {
       display: none;
       flex: 1;
       padding: 2rem;
     }
 
-    .safety-page.open { display: block; }
+    .page.open { display: block; }
 
-    .safety-page-header {
+    .page-header {
       align-items: center;
       display: flex;
       gap: 1rem;
@@ -275,29 +262,39 @@
 
     .btn-back:hover { background: #2a2a2a; color: #fff; }
 
-    .safety-page h2 {
-      color: #cc0000;
+    .page-title {
       font-size: 1.25rem;
       font-weight: 700;
       letter-spacing: 0.04em;
       text-transform: uppercase;
     }
 
-    .safety-section {
-      background: #1a0505;
-      border: 1px solid #4a1010;
+    .page-title.red { color: #cc0000; }
+    .page-title.white { color: #fff; }
+
+    /* sections dans les pages */
+    .page-section {
+      background: #1e1e1e;
+      border: 1px solid #2a2a2a;
       border-radius: 8px;
-      margin-bottom: 1.25rem;
+      margin-bottom: 1rem;
       overflow: hidden;
     }
 
-    .safety-section-header {
-      background: #220808;
-      border-bottom: 1px solid #4a1010;
-      padding: 0.75rem 1rem;
+    .page-section.red-theme { background: #1a0505; border-color: #4a1010; }
+
+    .page-section-header {
+      background: #222;
+      border-bottom: 1px solid #2a2a2a;
+      padding: 0.65rem 1rem;
     }
 
-    .safety-section-header h3 {
+    .page-section.red-theme .page-section-header {
+      background: #220808;
+      border-bottom-color: #4a1010;
+    }
+
+    .page-section-header h3 {
       color: #fff;
       font-size: 0.85rem;
       font-weight: 600;
@@ -305,12 +302,35 @@
       text-transform: uppercase;
     }
 
-    .safety-section-body {
+    .page-section-body {
       color: #666;
       font-size: 0.82rem;
       font-style: italic;
       padding: 1rem;
     }
+
+    /* tâches P1/P2/P3 */
+    .tasks-post-label {
+      color: #cc0000;
+      display: block;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.08em;
+      padding: 0.65rem 1rem;
+      text-transform: uppercase;
+      background: #222;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .tasks-text {
+      color: #ccc;
+      display: block;
+      font-size: 0.85rem;
+      line-height: 1.6;
+      padding: 0.85rem 1rem;
+    }
+
+    .tasks-text.placeholder { color: #444; font-style: italic; }
 
     /* ── Footer ── */
     footer {
@@ -325,156 +345,27 @@
     }
 
     footer span { letter-spacing: 0.04em; }
-
-    /* ── Hero stats interactifs ── */
-    .stat-link {
-      text-decoration: none;
-      color: inherit;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-    }
-
-    .stat-link:hover .stat-value { color: #ff3333; }
-
-    .stat-trigger {
-      background: none;
-      border: none;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      gap: 0.25rem;
-      padding: 0;
-      text-align: left;
-    }
-
-    .stat-trigger:hover .stat-value { color: #ff3333; }
-
-    /* ── Tasks page ── */
-    .tasks-page {
-      display: none;
-      flex: 1;
-      padding: 2rem;
-    }
-
-    .tasks-page.open { display: block; }
-
-    .tasks-page-title {
-      color: #fff;
-      font-size: 1.25rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-    }
-
-    .tasks-post-section {
-      background: #1e1e1e;
-      border: 1px solid #2a2a2a;
-      border-radius: 8px;
-      margin-bottom: 1rem;
-      overflow: hidden;
-    }
-
-    .tasks-post-header {
-      background: #222;
-      border-bottom: 1px solid #2a2a2a;
-      padding: 0.65rem 1rem;
-    }
-
-    .tasks-post-header span {
-      color: #cc0000;
-      font-size: 0.85rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
-      text-transform: uppercase;
-    }
-
-    .tasks-text {
-      color: #ccc;
-      display: block;
-      font-size: 0.85rem;
-      line-height: 1.6;
-      padding: 0.85rem 1rem;
-    }
-
-    .tasks-text.placeholder {
-      color: #444;
-      font-style: italic;
-    }
   </style>
 </head>
 <body>
 
-  <nav>
+  <nav class="topbar">
     <span class="logo">SGS</span>
   </nav>
 
   <section class="hero">
     <h1>Gestion des postes de travail</h1>
-    <div class="stats">
-      <div class="stat">
-        <span class="stat-value">3</span>
-        <span class="stat-label">Postes</span>
-      </div>
-      <div class="stat">
-        <button class="stat-trigger" id="securite-trigger">
-          <span class="stat-value">1</span>
-          <span class="stat-label">Règles de sécurité</span>
-        </button>
-      </div>
-      <div class="stat">
-        <button class="stat-trigger" id="tasks-trigger">
-          <span class="stat-value">›</span>
-          <span class="stat-label">Tâches à effectuer</span>
-        </button>
-      </div>
+    <div class="hero-nav">
+      <button id="nav-postes" class="active">Postes</button>
+      <button id="nav-taches">Tâches</button>
+      <button id="nav-coproduit">Co produit</button>
+      <button id="nav-quai">Quai</button>
+      <button id="nav-securite">Règles de sécurité</button>
     </div>
   </section>
 
-  <!-- Page Règles de sécurité -->
-  <section class="safety-page" id="safety-page">
-    <div class="safety-page-header">
-      <button class="btn-back" id="securite-back">← Retour</button>
-      <h2>Règles de sécurité</h2>
-    </div>
-
-    <div class="safety-section">
-      <div class="safety-section-header"><h3>Points de rassemblement</h3></div>
-      <div class="safety-section-body">À renseigner</div>
-    </div>
-
-    <div class="safety-section">
-      <div class="safety-section-header"><h3>Consignes générales</h3></div>
-      <div class="safety-section-body">À renseigner</div>
-    </div>
-
-    <div class="safety-section">
-      <div class="safety-section-header"><h3>Équipements requis</h3></div>
-      <div class="safety-section-body">À renseigner</div>
-    </div>
-  </section>
-
-  <!-- Page Tâches à effectuer -->
-  <section class="tasks-page" id="tasks-page">
-    <div class="safety-page-header">
-      <button class="btn-back" id="tasks-back">← Retour</button>
-      <h2 class="tasks-page-title">Tâches à effectuer</h2>
-    </div>
-    <div class="tasks-post-section">
-      <div class="tasks-post-header"><span>P1</span></div>
-      <p class="tasks-text">Faire la pastille et la roto, ramener à AD1 la pastille, faire les prélèvements CFO KSP SFR.</p>
-    </div>
-    <div class="tasks-post-section">
-      <div class="tasks-post-header"><span>P2</span></div>
-      <p class="tasks-text placeholder">À renseigner</p>
-    </div>
-    <div class="tasks-post-section">
-      <div class="tasks-post-header"><span>P3</span></div>
-      <p class="tasks-text placeholder">À renseigner</p>
-    </div>
-  </section>
-
-  <main>
+  <!-- Page principale : P1, P2, P3 -->
+  <main id="page-main">
     <div class="grid">
 
       <!-- P1 -->
@@ -499,7 +390,7 @@
           </div>
           <div class="field">
             <label>Traitement</label>
-            <div class="treatment-detail" id="treatment-p1">Traitement à renseigner</div>
+            <div class="treatment-detail" id="treatment-p1"></div>
           </div>
         </div>
       </div>
@@ -526,7 +417,7 @@
           </div>
           <div class="field">
             <label>Traitement</label>
-            <div class="treatment-detail" id="treatment-p2">Traitement à renseigner</div>
+            <div class="treatment-detail" id="treatment-p2"></div>
           </div>
         </div>
       </div>
@@ -553,50 +444,85 @@
           </div>
           <div class="field">
             <label>Traitement</label>
-            <div class="treatment-detail" id="treatment-p3">Traitement à renseigner</div>
+            <div class="treatment-detail" id="treatment-p3"></div>
           </div>
         </div>
       </div>
-
-      <!-- Quai -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-title">Quai</span>
-          <span class="status-dot"></span>
-        </div>
-        <div class="card-body">
-          <div class="field">
-            <label>Type de minerai</label>
-            <div class="field-value"></div>
-          </div>
-          <div class="field">
-            <label>Traitement</label>
-            <div class="field-value"></div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Co produit -->
-      <div class="card">
-        <div class="card-header">
-          <span class="card-title">Co produit</span>
-          <span class="status-dot"></span>
-        </div>
-        <div class="card-body">
-          <div class="field">
-            <label>Type de minerai</label>
-            <div class="field-value"></div>
-          </div>
-          <div class="field">
-            <label>Traitement</label>
-            <div class="field-value"></div>
-          </div>
-        </div>
-      </div>
-
 
     </div>
   </main>
+
+  <!-- Page Tâches -->
+  <section class="page" id="page-taches">
+    <div class="page-header">
+      <button class="btn-back" data-back>← Retour</button>
+      <span class="page-title white">Tâches à effectuer</span>
+    </div>
+    <div class="page-section">
+      <span class="tasks-post-label">P1</span>
+      <p class="tasks-text">Faire la pastille et la roto, ramener à AD1 la pastille, faire les prélèvements CFO KSP SFR.</p>
+    </div>
+    <div class="page-section">
+      <span class="tasks-post-label">P2</span>
+      <p class="tasks-text placeholder">À renseigner</p>
+    </div>
+    <div class="page-section">
+      <span class="tasks-post-label">P3</span>
+      <p class="tasks-text placeholder">À renseigner</p>
+    </div>
+  </section>
+
+  <!-- Page Co produit -->
+  <section class="page" id="page-coproduit">
+    <div class="page-header">
+      <button class="btn-back" data-back>← Retour</button>
+      <span class="page-title white">Co produit</span>
+    </div>
+    <div class="page-section">
+      <div class="page-section-header"><h3>Informations</h3></div>
+      <div class="page-section-body">À renseigner</div>
+    </div>
+    <div class="page-section">
+      <div class="page-section-header"><h3>Traitement</h3></div>
+      <div class="page-section-body">À renseigner</div>
+    </div>
+  </section>
+
+  <!-- Page Quai -->
+  <section class="page" id="page-quai">
+    <div class="page-header">
+      <button class="btn-back" data-back>← Retour</button>
+      <span class="page-title white">Quai</span>
+    </div>
+    <div class="page-section">
+      <div class="page-section-header"><h3>Informations</h3></div>
+      <div class="page-section-body">À renseigner</div>
+    </div>
+    <div class="page-section">
+      <div class="page-section-header"><h3>Traitement</h3></div>
+      <div class="page-section-body">À renseigner</div>
+    </div>
+  </section>
+
+  <!-- Page Règles de sécurité -->
+  <section class="page" id="page-securite">
+    <div class="page-header">
+      <button class="btn-back" data-back>← Retour</button>
+      <span class="page-title red">Règles de sécurité</span>
+    </div>
+    <div class="page-section red-theme">
+      <div class="page-section-header"><h3>Points de rassemblement</h3></div>
+      <div class="page-section-body">À renseigner</div>
+    </div>
+    <div class="page-section red-theme">
+      <div class="page-section-header"><h3>Consignes générales</h3></div>
+      <div class="page-section-body">À renseigner</div>
+    </div>
+    <div class="page-section red-theme">
+      <div class="page-section-header"><h3>Équipements requis</h3></div>
+      <div class="page-section-body">À renseigner</div>
+    </div>
+  </section>
 
   <footer>
     <span>SGS Minerai · Site industriel</span>
@@ -630,34 +556,41 @@
       return 'Traitement à renseigner';
     }
 
-    // Navigation entre pages
-    const mainEl = document.querySelector('main');
-    const safetyPage = document.getElementById('safety-page');
-    const tasksPage = document.getElementById('tasks-page');
+    // Navigation
+    const mainEl = document.getElementById('page-main');
+    const pages = document.querySelectorAll('.page');
+    const navBtns = document.querySelectorAll('.hero-nav button');
 
-    function showMain() {
-      mainEl.style.display = '';
-      safetyPage.classList.remove('open');
-      tasksPage.classList.remove('open');
+    const navMap = {
+      'nav-postes':    null,
+      'nav-taches':    'page-taches',
+      'nav-coproduit': 'page-coproduit',
+      'nav-quai':      'page-quai',
+      'nav-securite':  'page-securite',
+    };
+
+    function navigate(navId) {
+      const targetPageId = navMap[navId];
+      // update nav active state
+      navBtns.forEach(b => b.classList.toggle('active', b.id === navId));
+      // show/hide pages
+      pages.forEach(p => p.classList.remove('open'));
+      if (targetPageId) {
+        mainEl.style.display = 'none';
+        document.getElementById(targetPageId).classList.add('open');
+      } else {
+        mainEl.style.display = '';
+      }
     }
 
-    function openSafety() {
-      safetyPage.classList.add('open');
-      tasksPage.classList.remove('open');
-      mainEl.style.display = 'none';
-    }
+    navBtns.forEach(btn => btn.addEventListener('click', () => navigate(btn.id)));
 
-    function openTasks() {
-      tasksPage.classList.add('open');
-      safetyPage.classList.remove('open');
-      mainEl.style.display = 'none';
-    }
+    // Boutons retour : tous reviennent à Postes
+    document.querySelectorAll('[data-back]').forEach(btn => {
+      btn.addEventListener('click', () => navigate('nav-postes'));
+    });
 
-    document.getElementById('securite-trigger').addEventListener('click', openSafety);
-    document.getElementById('securite-back').addEventListener('click', showMain);
-    document.getElementById('tasks-trigger').addEventListener('click', openTasks);
-    document.getElementById('tasks-back').addEventListener('click', showMain);
-
+    // Minerais
     document.querySelectorAll('.minerai-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const card = btn.dataset.card;
