@@ -244,59 +244,6 @@
       letter-spacing: 0.04em;
     }
 
-    /* ── Tasks ── */
-    .task-list {
-      display: flex;
-      flex-direction: column;
-      gap: 0.35rem;
-    }
-
-    .task-item {
-      border: 1px solid #2a2a2a;
-      border-radius: 4px;
-      overflow: hidden;
-    }
-
-    .task-btn {
-      width: 100%;
-      background: #222;
-      border: none;
-      color: #bbb;
-      cursor: pointer;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      font-size: 0.78rem;
-      font-weight: 500;
-      padding: 0.45rem 0.7rem;
-      text-align: left;
-      transition: background 0.15s, color 0.15s;
-    }
-
-    .task-btn::after {
-      content: '›';
-      font-size: 1rem;
-      transition: transform 0.2s;
-      flex-shrink: 0;
-    }
-
-    .task-btn:hover { background: #2a2a2a; color: #fff; }
-
-    .task-btn.open { color: #fff; background: #2a2a2a; }
-    .task-btn.open::after { transform: rotate(90deg); }
-
-    .task-detail {
-      display: none;
-      background: #161616;
-      border-top: 1px solid #2a2a2a;
-      color: #666;
-      font-size: 0.78rem;
-      font-style: italic;
-      padding: 0.5rem 0.7rem;
-    }
-
-    .task-detail.visible { display: block; }
-
     /* ── Safety card ── */
     .card.safety {
       background: #1a0505;
@@ -432,32 +379,18 @@
 
     .tasks-panel-close:hover { color: #fff; border-color: #666; }
 
-    .tasks-panel-content {
-      display: none;
-    }
-
+    .tasks-panel-content { display: none; }
     .tasks-panel-content.active { display: block; }
 
-    .tasks-panel-content ul {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .tasks-panel-content ul li {
-      background: #222;
-      border: 1px solid #2a2a2a;
-      border-radius: 4px;
+    .tasks-text {
       color: #ccc;
-      font-size: 0.82rem;
-      padding: 0.5rem 0.75rem;
+      font-size: 0.85rem;
+      line-height: 1.6;
     }
 
-    .tasks-panel-content .placeholder {
+    .tasks-text.placeholder {
       color: #444;
       font-style: italic;
-      font-size: 0.8rem;
     }
   </style>
 </head>
@@ -500,20 +433,13 @@
       <button class="tasks-panel-close" id="tasks-panel-close">Fermer</button>
     </div>
     <div class="tasks-panel-content" id="tasks-content-p1">
-      <ul>
-        <li>Faire prélèvement roto</li>
-        <li>Aller voir si ya un bateau à quai</li>
-      </ul>
+      <p class="tasks-text">Faire la pastille et la roto, ramener à AD1 la pastille, faire les prélèvements CFO KSP SFR.</p>
     </div>
     <div class="tasks-panel-content" id="tasks-content-p2">
-      <ul>
-        <li class="placeholder">À renseigner</li>
-      </ul>
+      <p class="tasks-text placeholder">À renseigner</p>
     </div>
     <div class="tasks-panel-content" id="tasks-content-p3">
-      <ul>
-        <li class="placeholder">À renseigner</li>
-      </ul>
+      <p class="tasks-text placeholder">À renseigner</p>
     </div>
   </section>
 
@@ -544,23 +470,6 @@
             <label>Traitement</label>
             <div class="treatment-detail" id="treatment-p1">Traitement à renseigner</div>
           </div>
-          <div class="field">
-            <label>Tâches à effectuer</label>
-            <div class="task-list">
-              <div class="task-item">
-                <button class="task-btn">Tâche 1</button>
-                <div class="task-detail">Détail à renseigner</div>
-              </div>
-              <div class="task-item">
-                <button class="task-btn">Tâche 2</button>
-                <div class="task-detail">Détail à renseigner</div>
-              </div>
-              <div class="task-item">
-                <button class="task-btn">Tâche 3</button>
-                <div class="task-detail">Détail à renseigner</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -588,23 +497,6 @@
             <label>Traitement</label>
             <div class="treatment-detail" id="treatment-p2">Traitement à renseigner</div>
           </div>
-          <div class="field">
-            <label>Tâches à effectuer</label>
-            <div class="task-list">
-              <div class="task-item">
-                <button class="task-btn">Tâche 1</button>
-                <div class="task-detail">Détail à renseigner</div>
-              </div>
-              <div class="task-item">
-                <button class="task-btn">Tâche 2</button>
-                <div class="task-detail">Détail à renseigner</div>
-              </div>
-              <div class="task-item">
-                <button class="task-btn">Tâche 3</button>
-                <div class="task-detail">Détail à renseigner</div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -631,23 +523,6 @@
           <div class="field">
             <label>Traitement</label>
             <div class="treatment-detail" id="treatment-p3">Traitement à renseigner</div>
-          </div>
-          <div class="field">
-            <label>Tâches à effectuer</label>
-            <div class="task-list">
-              <div class="task-item">
-                <button class="task-btn">Tâche 1</button>
-                <div class="task-detail">Détail à renseigner</div>
-              </div>
-              <div class="task-item">
-                <button class="task-btn">Tâche 2</button>
-                <div class="task-detail">Détail à renseigner</div>
-              </div>
-              <div class="task-item">
-                <button class="task-btn">Tâche 3</button>
-                <div class="task-detail">Détail à renseigner</div>
-              </div>
-            </div>
           </div>
         </div>
       </div>
@@ -740,16 +615,6 @@
       }
       return 'Traitement à renseigner';
     }
-
-    // Tâches dans les cartes P1/P2/P3
-    document.querySelectorAll('.task-btn').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const detail = btn.nextElementSibling;
-        const isOpen = btn.classList.contains('open');
-        btn.classList.toggle('open', !isOpen);
-        detail.classList.toggle('visible', !isOpen);
-      });
-    });
 
     // Panel tâches hero
     const trigger = document.getElementById('tasks-trigger');
