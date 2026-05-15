@@ -244,6 +244,74 @@
       letter-spacing: 0.04em;
     }
 
+    /* ── Safety page ── */
+    .safety-page {
+      display: none;
+      flex: 1;
+      padding: 2rem;
+    }
+
+    .safety-page.open { display: block; }
+
+    .safety-page-header {
+      align-items: center;
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .btn-back {
+      background: #222;
+      border: 1px solid #333;
+      border-radius: 5px;
+      color: #aaa;
+      cursor: pointer;
+      font-size: 0.78rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      padding: 0.4rem 0.85rem;
+      transition: background 0.15s, color 0.15s;
+    }
+
+    .btn-back:hover { background: #2a2a2a; color: #fff; }
+
+    .safety-page h2 {
+      color: #cc0000;
+      font-size: 1.25rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .safety-section {
+      background: #1a0505;
+      border: 1px solid #4a1010;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+      overflow: hidden;
+    }
+
+    .safety-section-header {
+      background: #220808;
+      border-bottom: 1px solid #4a1010;
+      padding: 0.75rem 1rem;
+    }
+
+    .safety-section-header h3 {
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    .safety-section-body {
+      color: #666;
+      font-size: 0.82rem;
+      font-style: italic;
+      padding: 1rem;
+    }
+
     /* ── Safety card ── */
     .card.safety {
       background: #1a0505;
@@ -404,14 +472,14 @@
     <h1>Gestion des postes de travail</h1>
     <div class="stats">
       <div class="stat">
-        <span class="stat-value">6</span>
+        <span class="stat-value">3</span>
         <span class="stat-label">Postes</span>
       </div>
       <div class="stat">
-        <a class="stat-link" href="#securite">
+        <button class="stat-trigger" id="securite-trigger">
           <span class="stat-value">1</span>
           <span class="stat-label">Règles de sécurité</span>
-        </a>
+        </button>
       </div>
       <div class="stat stat-dropdown-wrapper">
         <button class="stat-trigger" id="tasks-trigger">
@@ -424,6 +492,29 @@
           <button data-post="p3">P3</button>
         </div>
       </div>
+    </div>
+  </section>
+
+  <!-- Page Règles de sécurité -->
+  <section class="safety-page" id="safety-page">
+    <div class="safety-page-header">
+      <button class="btn-back" id="securite-back">← Retour</button>
+      <h2>Règles de sécurité</h2>
+    </div>
+
+    <div class="safety-section">
+      <div class="safety-section-header"><h3>Points de rassemblement</h3></div>
+      <div class="safety-section-body">À renseigner</div>
+    </div>
+
+    <div class="safety-section">
+      <div class="safety-section-header"><h3>Consignes générales</h3></div>
+      <div class="safety-section-body">À renseigner</div>
+    </div>
+
+    <div class="safety-section">
+      <div class="safety-section-header"><h3>Équipements requis</h3></div>
+      <div class="safety-section-body">À renseigner</div>
     </div>
   </section>
 
@@ -648,6 +739,25 @@
       dropdown.querySelectorAll('button').forEach(b => b.classList.remove('active'));
     });
 
+    // Page Règles de sécurité
+    const safetyPage = document.getElementById('safety-page');
+    const mainEl = document.querySelector('main');
+    const tasksPanel = document.getElementById('tasks-panel');
+
+    function openSafety() {
+      safetyPage.classList.add('open');
+      mainEl.style.display = 'none';
+      tasksPanel.style.display = 'none';
+    }
+
+    function closeSafety() {
+      safetyPage.classList.remove('open');
+      mainEl.style.display = '';
+      tasksPanel.style.display = '';
+    }
+
+    document.getElementById('securite-trigger').addEventListener('click', openSafety);
+    document.getElementById('securite-back').addEventListener('click', closeSafety);
 
     document.querySelectorAll('.minerai-btn').forEach(btn => {
       btn.addEventListener('click', () => {
