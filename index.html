@@ -651,7 +651,22 @@
             <li>Préparer les plateaux granulo et humidité, peser le plateau humidité et inscrire le poids humide sur la feuille, puis mettre les deux plateaux à l'étuve.</li>
           </ol>`;
       }
-      if (minerai === 'KSP5') {
+      if (minerai === 'KSP') {
+        const kspSteps = {
+          p2: `
+            <ol>
+              <li>Diviser le sceau bleu.</li>
+              <li>Faire 1 plateau pour la granulo.</li>
+              <li>Noter le poids humide sur la feuille.</li>
+            </ol>`,
+          p3: `
+            <ol>
+              <li>Peser le poids sec et noter sur la feuille.</li>
+              <li>Faire la granulo du plateau KSP.</li>
+            </ol>`,
+        };
+        return kspSteps[card] || 'Traitement à renseigner';
+      }
         return `
           <ol>
             <li>Diviser le seau de KSP5.</li>
