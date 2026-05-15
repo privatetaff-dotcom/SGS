@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SGS — Gestion des postes de travail</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      background: #161616;
+      color: #e0e0e0;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ── Navbar ── */
+    nav {
+      background: #000;
+      padding: 0 2rem;
+      height: 56px;
+      display: flex;
+      align-items: center;
+      border-bottom: 1px solid #2a2a2a;
+    }
+
+    .logo {
+      font-size: 1.5rem;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      color: #cc0000;
+      text-transform: uppercase;
+    }
+
+    /* ── Hero ── */
+    .hero {
+      background: linear-gradient(135deg, #1a1a1a 0%, #111 100%);
+      border-bottom: 1px solid #2a2a2a;
+      padding: 2.5rem 2rem;
+    }
+
+    .hero h1 {
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 1.75rem;
+      letter-spacing: 0.02em;
+    }
+
+    .stats {
+      display: flex;
+      gap: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .stat {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      color: #cc0000;
+      line-height: 1;
+    }
+
+    .stat-label {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #888;
+    }
+
+    /* ── Grid ── */
+    main {
+      flex: 1;
+      padding: 2rem;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 1.25rem;
+    }
+
+    /* ── Card ── */
+    .card {
+      background: #1e1e1e;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.875rem 1rem;
+      border-bottom: 1px solid #2a2a2a;
+      background: #222;
+    }
+
+    .card-title {
+      font-size: 0.9rem;
+      font-weight: 600;
+      letter-spacing: 0.04em;
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .status-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #3cba5f;
+      flex-shrink: 0;
+    }
+
+    .status-dot.red { background: #cc0000; }
+
+    .card-body {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.875rem;
+    }
+
+    .field label {
+      display: block;
+      font-size: 0.7rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #666;
+      margin-bottom: 0.35rem;
+    }
+
+    .field-value {
+      min-height: 36px;
+      background: #161616;
+      border: 1px solid #2a2a2a;
+      border-radius: 4px;
+      padding: 0.5rem 0.75rem;
+      font-size: 0.875rem;
+      color: #444;
+    }
+
+    /* ── Safety card ── */
+    .card.safety {
+      background: #1a0505;
+      border-color: #4a1010;
+    }
+
+    .card.safety .card-header {
+      background: #220808;
+      border-bottom-color: #4a1010;
+    }
+
+    .card.safety .field-value {
+      background: #120303;
+      border-color: #4a1010;
+    }
+
+    /* ── Footer ── */
+    footer {
+      background: #000;
+      border-top: 1px solid #2a2a2a;
+      padding: 1rem 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.75rem;
+      color: #555;
+    }
+
+    footer span { letter-spacing: 0.04em; }
+  </style>
+</head>
+<body>
+
+  <nav>
+    <span class="logo">SGS</span>
+  </nav>
+
+  <section class="hero">
+    <h1>Gestion des postes de travail</h1>
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-value">6</span>
+        <span class="stat-label">Postes</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">—</span>
+        <span class="stat-label">Échantillons</span>
+      </div>
+      <div class="stat">
+        <span class="stat-value">—</span>
+        <span class="stat-label">En cours</span>
+      </div>
+    </div>
+  </section>
+
+  <main>
+    <div class="grid">
+
+      <!-- P1 -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">P1</span>
+          <span class="status-dot"></span>
+        </div>
+        <div class="card-body">
+          <div class="field">
+            <label>Type de minerai</label>
+            <div class="field-value"></div>
+          </div>
+          <div class="field">
+            <label>Traitement</label>
+            <div class="field-value"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P2 -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">P2</span>
+          <span class="status-dot"></span>
+        </div>
+        <div class="card-body">
+          <div class="field">
+            <label>Type de minerai</label>
+            <div class="field-value"></div>
+          </div>
+          <div class="field">
+            <label>Traitement</label>
+            <div class="field-value"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- P3 -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">P3</span>
+          <span class="status-dot"></span>
+        </div>
+        <div class="card-body">
+          <div class="field">
+            <label>Type de minerai</label>
+            <div class="field-value"></div>
+          </div>
+          <div class="field">
+            <label>Traitement</label>
+            <div class="field-value"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Quai -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Quai</span>
+          <span class="status-dot"></span>
+        </div>
+        <div class="card-body">
+          <div class="field">
+            <label>Type de minerai</label>
+            <div class="field-value"></div>
+          </div>
+          <div class="field">
+            <label>Traitement</label>
+            <div class="field-value"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Co produit -->
+      <div class="card">
+        <div class="card-header">
+          <span class="card-title">Co produit</span>
+          <span class="status-dot"></span>
+        </div>
+        <div class="card-body">
+          <div class="field">
+            <label>Type de minerai</label>
+            <div class="field-value"></div>
+          </div>
+          <div class="field">
+            <label>Traitement</label>
+            <div class="field-value"></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Règle de sécurité -->
+      <div class="card safety">
+        <div class="card-header">
+          <span class="card-title">Règle de sécurité</span>
+          <span class="status-dot red"></span>
+        </div>
+        <div class="card-body">
+          <div class="field">
+            <label>Consigne</label>
+            <div class="field-value"></div>
+          </div>
+          <div class="field">
+            <label>Équipement requis</label>
+            <div class="field-value"></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <footer>
+    <span>SGS Minerai · Site industriel</span>
+    <span>v1.0</span>
+  </footer>
+
+</body>
+</html>
