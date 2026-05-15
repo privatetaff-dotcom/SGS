@@ -346,6 +346,64 @@
 
     footer span { letter-spacing: 0.04em; }
 
+    /* ── Formules ── */
+    .formula-card {
+      background: #1e1e1e;
+      border: 1px solid #2a2a2a;
+      border-radius: 8px;
+      margin-bottom: 1.25rem;
+      padding: 1.5rem 2rem;
+    }
+
+    .formula-name {
+      color: #cc0000;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      margin-bottom: 1.25rem;
+      text-transform: uppercase;
+    }
+
+    .formula-expr {
+      align-items: center;
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 0.75rem;
+    }
+
+    .formula-fraction {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0;
+    }
+
+    .numerator,
+    .denominator {
+      color: #e0e0e0;
+      font-size: 0.9rem;
+      font-weight: 500;
+      padding: 0.2rem 0.5rem;
+      text-align: center;
+    }
+
+    .numerator {
+      border-bottom: 2px solid #cc0000;
+    }
+
+    .formula-op {
+      color: #aaa;
+      font-size: 1rem;
+      font-weight: 600;
+    }
+
+    .formula-unit {
+      color: #555;
+      font-size: 0.75rem;
+      font-style: italic;
+      letter-spacing: 0.04em;
+    }
+
     .grid-note {
       color: #666;
       font-size: 0.78rem;
@@ -368,6 +426,7 @@
       <button id="nav-taches">Tâches</button>
       <button id="nav-coproduit">Co produit</button>
       <button id="nav-quai">Quai</button>
+      <button id="nav-formules">Formules</button>
       <button id="nav-securite">Règles de sécurité</button>
     </div>
   </section>
@@ -513,6 +572,36 @@
     </div>
   </section>
 
+  <!-- Page Formules -->
+  <section class="page" id="page-formules">
+    <div class="page-header">
+      <button class="btn-back" data-back>← Retour</button>
+      <span class="page-title white">Formules</span>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-name">H<sub>2</sub>O</div>
+      <div class="formula-expr">
+        <span class="formula-fraction">
+          <span class="numerator">Poids humide − Poids sec</span>
+          <span class="denominator">Poids humide − Tare</span>
+        </span>
+        <span class="formula-op">× 100</span>
+      </div>
+      <div class="formula-unit">Résultat en %</div>
+    </div>
+
+    <div class="formula-card">
+      <div class="formula-name">Densité</div>
+      <div class="formula-expr">
+        <span class="formula-fraction">
+          <span class="numerator">Poids de la matière</span>
+          <span class="denominator">Poids de l'eau</span>
+        </span>
+      </div>
+    </div>
+  </section>
+
   <!-- Page Règles de sécurité -->
   <section class="page" id="page-securite">
     <div class="page-header">
@@ -575,6 +664,7 @@
       'nav-taches':    'page-taches',
       'nav-coproduit': 'page-coproduit',
       'nav-quai':      'page-quai',
+      'nav-formules':  'page-formules',
       'nav-securite':  'page-securite',
     };
 
