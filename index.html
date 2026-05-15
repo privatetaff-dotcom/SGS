@@ -326,6 +326,158 @@
     }
 
     footer span { letter-spacing: 0.04em; }
+
+    /* ── Hero stats interactifs ── */
+    .stat-link {
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+
+    .stat-link:hover .stat-value { color: #ff3333; }
+
+    .stat-trigger {
+      background: none;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      padding: 0;
+      text-align: left;
+    }
+
+    .stat-trigger:hover .stat-value { color: #ff3333; }
+
+    /* ── Dropdown tâches ── */
+    .stat-dropdown-wrapper {
+      position: relative;
+    }
+
+    .tasks-dropdown {
+      background: #1a1a1a;
+      border: 1px solid #333;
+      border-radius: 6px;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+      display: none;
+      left: 0;
+      min-width: 120px;
+      overflow: hidden;
+      position: absolute;
+      top: calc(100% + 8px);
+      z-index: 100;
+    }
+
+    .tasks-dropdown.open { display: block; }
+
+    .tasks-dropdown button {
+      background: none;
+      border: none;
+      color: #bbb;
+      cursor: pointer;
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      letter-spacing: 0.05em;
+      padding: 0.6rem 1rem;
+      text-align: left;
+      transition: background 0.12s, color 0.12s;
+      width: 100%;
+    }
+
+    .tasks-dropdown button:hover { background: #2a2a2a; color: #fff; }
+    .tasks-dropdown button.active { background: #cc0000; color: #fff; }
+
+    /* ── Panel tâches ── */
+    .tasks-panel {
+      display: none;
+      background: #191919;
+      border-bottom: 1px solid #2a2a2a;
+      padding: 1.25rem 2rem;
+    }
+
+    .tasks-panel.open { display: block; }
+
+    .tasks-panel-header {
+      align-items: center;
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 1rem;
+    }
+
+    .tasks-panel-title {
+      color: #fff;
+      font-size: 0.85rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .tasks-panel-title span {
+      color: #cc0000;
+    }
+
+    .tasks-panel-close {
+      background: none;
+      border: 1px solid #333;
+      border-radius: 4px;
+      color: #666;
+      cursor: pointer;
+      font-size: 0.75rem;
+      padding: 0.2rem 0.5rem;
+      transition: color 0.15s, border-color 0.15s;
+    }
+
+    .tasks-panel-close:hover { color: #fff; border-color: #666; }
+
+    .tasks-panel-content {
+      display: none;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .tasks-panel-content.active { display: flex; }
+
+    .panel-task-item {
+      border: 1px solid #2a2a2a;
+      border-radius: 4px;
+      overflow: hidden;
+    }
+
+    .panel-task-btn {
+      align-items: center;
+      background: #222;
+      border: none;
+      color: #bbb;
+      cursor: pointer;
+      display: flex;
+      font-size: 0.78rem;
+      font-weight: 500;
+      justify-content: space-between;
+      padding: 0.45rem 0.7rem;
+      text-align: left;
+      transition: background 0.15s, color 0.15s;
+      width: 100%;
+    }
+
+    .panel-task-btn::after { content: '›'; font-size: 1rem; transition: transform 0.2s; }
+    .panel-task-btn:hover { background: #2a2a2a; color: #fff; }
+    .panel-task-btn.open { background: #2a2a2a; color: #fff; }
+    .panel-task-btn.open::after { transform: rotate(90deg); }
+
+    .panel-task-detail {
+      background: #161616;
+      border-top: 1px solid #2a2a2a;
+      color: #666;
+      display: none;
+      font-size: 0.78rem;
+      font-style: italic;
+      padding: 0.5rem 0.7rem;
+    }
+
+    .panel-task-detail.visible { display: block; }
   </style>
 </head>
 <body>
@@ -342,13 +494,44 @@
         <span class="stat-label">Postes</span>
       </div>
       <div class="stat">
-        <span class="stat-value">—</span>
-        <span class="stat-label">Échantillons</span>
+        <a class="stat-link" href="#securite">
+          <span class="stat-value">1</span>
+          <span class="stat-label">Règles de sécurité</span>
+        </a>
       </div>
-      <div class="stat">
-        <span class="stat-value">—</span>
-        <span class="stat-label">En cours</span>
+      <div class="stat stat-dropdown-wrapper">
+        <button class="stat-trigger" id="tasks-trigger">
+          <span class="stat-value">›</span>
+          <span class="stat-label">Tâches à effectuer</span>
+        </button>
+        <div class="tasks-dropdown" id="tasks-dropdown">
+          <button data-post="p1">P1</button>
+          <button data-post="p2">P2</button>
+          <button data-post="p3">P3</button>
+        </div>
       </div>
+    </div>
+  </section>
+
+  <section class="tasks-panel" id="tasks-panel">
+    <div class="tasks-panel-header">
+      <span class="tasks-panel-title">Tâches — <span id="tasks-panel-post"></span></span>
+      <button class="tasks-panel-close" id="tasks-panel-close">Fermer</button>
+    </div>
+    <div class="tasks-panel-content" id="tasks-content-p1">
+      <div class="panel-task-item"><button class="panel-task-btn">Tâche 1</button><div class="panel-task-detail">Détail à renseigner</div></div>
+      <div class="panel-task-item"><button class="panel-task-btn">Tâche 2</button><div class="panel-task-detail">Détail à renseigner</div></div>
+      <div class="panel-task-item"><button class="panel-task-btn">Tâche 3</button><div class="panel-task-detail">Détail à renseigner</div></div>
+    </div>
+    <div class="tasks-panel-content" id="tasks-content-p2">
+      <div class="panel-task-item"><button class="panel-task-btn">Tâche 1</button><div class="panel-task-detail">Détail à renseigner</div></div>
+      <div class="panel-task-item"><button class="panel-task-btn">Tâche 2</button><div class="panel-task-detail">Détail à renseigner</div></div>
+      <div class="panel-task-item"><button class="panel-task-btn">Tâche 3</button><div class="panel-task-detail">Détail à renseigner</div></div>
+    </div>
+    <div class="tasks-panel-content" id="tasks-content-p3">
+      <div class="panel-task-item"><button class="panel-task-btn">Tâche 1</button><div class="panel-task-detail">Détail à renseigner</div></div>
+      <div class="panel-task-item"><button class="panel-task-btn">Tâche 2</button><div class="panel-task-detail">Détail à renseigner</div></div>
+      <div class="panel-task-item"><button class="panel-task-btn">Tâche 3</button><div class="panel-task-detail">Détail à renseigner</div></div>
     </div>
   </section>
 
@@ -524,7 +707,7 @@
       </div>
 
       <!-- Règle de sécurité -->
-      <div class="card safety">
+      <div class="card safety" id="securite">
         <div class="card-header">
           <span class="card-title">Règle de sécurité</span>
           <span class="status-dot red"></span>
@@ -576,7 +759,50 @@
       return 'Traitement à renseigner';
     }
 
+    // Tâches dans les cartes P1/P2/P3
     document.querySelectorAll('.task-btn').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const detail = btn.nextElementSibling;
+        const isOpen = btn.classList.contains('open');
+        btn.classList.toggle('open', !isOpen);
+        detail.classList.toggle('visible', !isOpen);
+      });
+    });
+
+    // Panel tâches hero
+    const trigger = document.getElementById('tasks-trigger');
+    const dropdown = document.getElementById('tasks-dropdown');
+    const panel = document.getElementById('tasks-panel');
+    const panelPost = document.getElementById('tasks-panel-post');
+
+    trigger.addEventListener('click', e => {
+      e.stopPropagation();
+      dropdown.classList.toggle('open');
+    });
+
+    document.addEventListener('click', () => dropdown.classList.remove('open'));
+
+    dropdown.querySelectorAll('button[data-post]').forEach(btn => {
+      btn.addEventListener('click', e => {
+        e.stopPropagation();
+        const post = btn.dataset.post;
+        dropdown.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        dropdown.classList.remove('open');
+        document.querySelectorAll('.tasks-panel-content').forEach(c => c.classList.remove('active'));
+        document.getElementById('tasks-content-' + post).classList.add('active');
+        panelPost.textContent = post.toUpperCase();
+        panel.classList.add('open');
+      });
+    });
+
+    document.getElementById('tasks-panel-close').addEventListener('click', () => {
+      panel.classList.remove('open');
+      dropdown.querySelectorAll('button').forEach(b => b.classList.remove('active'));
+    });
+
+    // Tâches dans le panel hero
+    document.querySelectorAll('.panel-task-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const detail = btn.nextElementSibling;
         const isOpen = btn.classList.contains('open');
