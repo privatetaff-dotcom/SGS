@@ -196,6 +196,30 @@
       display: block;
     }
 
+    .treatment-detail .prelevement {
+      font-style: normal;
+      font-weight: 600;
+      color: #cc0000;
+      font-size: 0.75rem;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 0.5rem;
+    }
+
+    .treatment-detail ol {
+      padding-left: 1.1rem;
+      font-style: normal;
+      color: #ccc;
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+    }
+
+    .treatment-detail ol li {
+      font-size: 0.8rem;
+      line-height: 1.4;
+    }
+
     /* ── Safety card ── */
     .card.safety {
       background: #1a0505;
@@ -270,7 +294,7 @@
               <button class="minerai-btn" data-card="p1" data-minerai="SFR">SFR</button>
               <button class="minerai-btn" data-card="p1" data-minerai="CAO">CAO</button>
               <button class="minerai-btn" data-card="p1" data-minerai="ABO">ABO</button>
-              <button class="minerai-btn" data-card="p1" data-minerai="COKERIE">COKERIE</button>
+              <button class="minerai-btn" data-card="p1" data-minerai="COKERIE" data-heure="10h">COKERIE</button>
             </div>
           </div>
           <div class="field">
@@ -296,7 +320,7 @@
               <button class="minerai-btn" data-card="p2" data-minerai="SFR">SFR</button>
               <button class="minerai-btn" data-card="p2" data-minerai="CAO">CAO</button>
               <button class="minerai-btn" data-card="p2" data-minerai="ABO">ABO</button>
-              <button class="minerai-btn" data-card="p2" data-minerai="COKERIE">COKERIE</button>
+              <button class="minerai-btn" data-card="p2" data-minerai="COKERIE" data-heure="18h">COKERIE</button>
             </div>
           </div>
           <div class="field">
@@ -322,7 +346,7 @@
               <button class="minerai-btn" data-card="p3" data-minerai="SFR">SFR</button>
               <button class="minerai-btn" data-card="p3" data-minerai="CAO">CAO</button>
               <button class="minerai-btn" data-card="p3" data-minerai="ABO">ABO</button>
-              <button class="minerai-btn" data-card="p3" data-minerai="COKERIE">COKERIE</button>
+              <button class="minerai-btn" data-card="p3" data-minerai="COKERIE" data-heure="2h">COKERIE</button>
             </div>
           </div>
           <div class="field">
@@ -395,19 +419,33 @@
   </footer>
 
   <script>
+    function buildTreatmentHTML(minerai, heure) {
+      if (minerai === 'COKERIE') {
+        return `
+          <div class="prelevement">Prélèvement à ${heure}</div>
+          <ol>
+            <li>Diviser la cokerie dans le diviseur.</li>
+            <li>Faire un sachet brut avec l'inscription : <strong>Cokerie brut + date + équipe</strong>.</li>
+            <li>Depuis ce même bac : réaliser le plateau granulo et le plateau humidité.</li>
+          </ol>`;
+      }
+      return 'Traitement à renseigner';
+    }
+
     document.querySelectorAll('.minerai-btn').forEach(btn => {
       btn.addEventListener('click', () => {
         const card = btn.dataset.card;
         const detail = document.getElementById('treatment-' + card);
         const isActive = btn.classList.contains('active');
 
-        // Deselect all buttons in this card
         document.querySelectorAll(`.minerai-btn[data-card="${card}"]`).forEach(b => b.classList.remove('active'));
 
         if (isActive) {
           detail.classList.remove('visible');
+          detail.innerHTML = '';
         } else {
           btn.classList.add('active');
+          detail.innerHTML = buildTreatmentHTML(btn.dataset.minerai, btn.dataset.heure);
           detail.classList.add('visible');
         }
       });
