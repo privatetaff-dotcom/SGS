@@ -445,17 +445,18 @@
   <script>
     function buildTreatmentHTML(minerai, heure, card) {
       if (minerai === 'COKERIE') {
-        const retourSachet = card === 'p1'
-          ? '<li>Ramener le sachet charbon cokerie à la cokerie <strong>avant 8h</strong>.</li>'
-          : '';
+        const humiditeSteps = {
+          p1: `<li><em>Plateau humidité</em> : peser, inscrire sur la feuille, l'ajouter dans le sachet charbon cokerie de la veille (contenant déjà les plateaux P2 et P3), ramener ce sachet complet à la cokerie <strong>avant 8h</strong>, puis créer un nouveau sachet <strong>Charbon cokerie + date</strong> pour les équipes P2 et P3 suivantes.</li>`,
+          p2: `<li><em>Plateau humidité</em> : peser, inscrire sur la feuille, mettre dans le sachet charbon cokerie en cours.</li>`,
+          p3: `<li><em>Plateau humidité</em> : peser, inscrire sur la feuille, mettre dans le sachet charbon cokerie en cours.</li>`,
+        };
         return `
           <ol>
             <li>
               <strong>Récupérer la cokerie de l'équipe précédente</strong> (en étuve depuis 4h) :
               <ul>
                 <li><em>Plateau granulo</em> : tamiser aux mailles 200µm, 500µm, 1mm, 2mm, 3mm, 5mm, 10mm, 20mm — peser chaque fraction et inscrire sur la feuille.</li>
-                <li><em>Plateau humidité</em> : peser, inscrire sur la feuille, puis mettre dans le sachet <strong>Charbon cokerie + date</strong>.</li>
-                ${retourSachet}
+                ${humiditeSteps[card]}
                 <li>Renseigner les chiffres sur le rapport.</li>
               </ul>
             </li>
