@@ -658,6 +658,7 @@
               <li>Prendre la tare du plateau.</li>
               <li>Faire 1 plateau pour la granulo.</li>
               <li>Noter le poids humide sur la feuille.</li>
+              <li>Mettre à l'étuve.</li>
             </ol>`,
           p3: `
             <ol>
@@ -666,6 +667,28 @@
             </ol>`,
         };
         return kspSteps[card] || 'Traitement à renseigner';
+      }
+      if (minerai === 'CFO') {
+        const cfoSteps = {
+          p1: `
+            <ol>
+              <li>Prélèvement.</li>
+              <li>Mettre dans le seau CFO à l'atelier.</li>
+            </ol>`,
+          p2: `
+            <ol>
+              <li>Faire un plateau pour la granulo.</li>
+              <li>Faire un plateau pour la chimie (200g minimum).</li>
+              <li>Mettre à l'étuve.</li>
+            </ol>`,
+          p3: `
+            <ol>
+              <li>Faire la granulo.</li>
+              <li>Peser le fond mais le garder séparé du reste.</li>
+              <li>Diviser autant de fois que possible pour arriver entre 500g et 1kg pour la rotap.</li>
+            </ol>`,
+        };
+        return cfoSteps[card] || 'Traitement à renseigner';
       }
       if (minerai === 'KSP5') {
         return `
