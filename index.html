@@ -667,6 +667,7 @@
         };
         return kspSteps[card] || 'Traitement à renseigner';
       }
+      if (minerai === 'KSP5') {
         return `
           <ol>
             <li>Diviser le seau de KSP5.</li>
@@ -676,6 +677,7 @@
             <li>Noter les chiffres sur le rapport et prévenir l'opérateur du pourcentage du supérieur à 5mm.</li>
           </ol>`;
       }
+      return 'Traitement à renseigner';
     }
 
     // Navigation
